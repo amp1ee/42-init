@@ -1,0 +1,1 @@
+ifconfig -s | cut -d ' ' -f 1 | awk 'NR>1{print ;}'

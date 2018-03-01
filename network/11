@@ -1,0 +1,1 @@
+tracepath 42.fr | awk 'NR==2{print }'
