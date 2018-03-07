@@ -1,1 +1,1 @@
-route -n | awk 'NR==3{print $2;}'
+netstat -nr | grep default | cut -d' ' -f 13

@@ -1,1 +1,1 @@
-ifconfig enp2s0 | grep 'inet ' | cut -d' ' -f 10
+ifconfig en0 | grep 'inet ' | cut -d' ' -f 2
