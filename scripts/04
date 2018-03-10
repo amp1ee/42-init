@@ -1,0 +1,11 @@
+file=schedule.cron
+crontab -l > $file
+echo "* * * * * \
+	md5_1=\"\$(md5sum /etc/crontab | cut -d' ' -f1)\" && \
+	md5_2=\"\$(md5sum /etc/crontab.bak | cut -d' ' -f1)\" && \
+	if [ '\$md5_1' != '\$md5_2' ]	then \
+		md5sum /etc/crontab > /etc/crontab.bak && \
+		mail -s 'Crontab file has changed' root ; \
+	fi" >> $file
+crontab $file
+rm $file
