@@ -1,1 +1,1 @@
-tail -f /var/log/syslog >> /dev/null &
+tail -f /var/log/syslog &
