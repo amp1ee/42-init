@@ -6,7 +6,7 @@ echo "* * * * * \
 	md5_1=\"\$(md5sum /etc/crontab | cut -d' ' -f1)\" && \
 	md5_2=\"\$(cat \$sumfile | cut -d' ' -f1)\" && \
 	if [ \$md5_1 != \$md5_2 ];	then \
-		md5sum /etc/crontab > \$sumfile && \
+		echo \$md5_1 > \$sumfile && \
 		mail -s 'Crontab file has changed' root < /etc/crontab ; \
 	fi" >> $file
 crontab $file
