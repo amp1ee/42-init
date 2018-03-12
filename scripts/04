@@ -1,12 +1,13 @@
 file=schedule.cron
+md5sum /etc/crontab > ~/.crontabsum
 crontab -l > $file
 echo "* * * * * \
 	sumfile=~/.crontabsum && \
 	md5_1=\"\$(md5sum /etc/crontab | cut -d' ' -f1)\" && \
 	md5_2=\"\$(cat \$sumfile | cut -d' ' -f1)\" && \
-	if [ '\$md5_1' != '\$md5_2' ];	then \
+	if [ \$md5_1 != \$md5_2 ];	then \
 		md5sum /etc/crontab > \$sumfile && \
 		mail -s 'Crontab file has changed' root < /etc/crontab ; \
-	fi" > $file
+	fi" >> $file
 crontab $file
 rm $file
